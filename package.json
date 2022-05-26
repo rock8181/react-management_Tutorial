@@ -1,17 +1,21 @@
 {
     "name": "management",
     "version": "1.0.0",
-    "script": {
+    "scripts": {
         "client": "cd client && yarn start",
         "server": "nodemon server.js",
-        "dev": "concurrently --kill-other-on-fail \"yarn server\" \"yarn client\""
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "dependencies": {
-        "body-parser": "^1.18.3",
+        "body-parser": "^1.20.0",
         "express": "^4.16.4",
         "nodemon": "^2.0.16"
     },
     "devDependencies": {
-        "concurrently": "^4.0.1"
-    }
+        "concurrently": "^7.2.1"
+    },
+    "main": "index.js",
+    "repository": "https://github.com/rock8181/management_github.git",
+    "author": "<rock8181@naver.com>",
+    "license": "MIT"
 }
