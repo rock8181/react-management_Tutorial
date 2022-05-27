@@ -15,7 +15,7 @@
         "concurrently": "^7.2.1"
     },
     "main": "index.js",
-    "repository": "https://github.com/rock8181/management_github.git",
+    "repository": "https://github.com/rock8181/react-management_Tutorial.git",
     "author": "<rock8181@naver.com>",
     "license": "MIT"
 }
