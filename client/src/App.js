@@ -39,7 +39,7 @@ class App extends Component{
 
   componentDidMount(){
     console.log('componentDidMount')
-    this.timer = setInterval(this.progress, 40);
+    this.timer = setInterval(this.progress, 100);
     
     this.callApi()
       .then(res => this.setState({customers : res}))
@@ -57,7 +57,7 @@ class App extends Component{
   progress = () => {
     const {completed} = this.state;
     //console.log(completed)
-    this.setState({completed : completed >= 100 ? 0 : completed + 1});
+    this.setState({completed : completed > 140 ? 0 : completed + 4});
   }
   render(){
     const { classes } = this.props;
@@ -75,12 +75,12 @@ class App extends Component{
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.customers ? this.state.customers.map(c => { return (<Customer key={c.id} id = {c.id} image = {c.image} name= {c.name}  birthday= {c.birth}  gender = {c.gender}  job= {c.job}/>);
+            {this.state.customers ? this.state.customers.map(c => { return (<Customer key={c.id} id = {c.id} image = {c.image} name= {c.name}  birthday= {c.birthday}  gender = {c.gender}  job= {c.job}/>);
             }): 
             <TableRow>
               <TableCell colSpan="6" align="center">
                 <CircularProgress className = {classes.progress} variant ="determinate" value={this.state.completed} />
-                <LinearProgress className = {classes.linearprogress} variant="determinate" value={this.state.completed} />
+                <LinearProgress className = {classes.linearprogress} />
               </TableCell>
             </TableRow>  
             }
