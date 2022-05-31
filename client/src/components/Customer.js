@@ -7,6 +7,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
+import CustomerDelete from './CustomerDelete';
 
 const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -26,16 +27,9 @@ class Customer extends React.Component {
             <TableCell>{this.props.gender}</TableCell>
             <TableCell>
                 {this.props.job}
-                <StyledTooltip title="I am navy">
-                    <Button variant="contained" color="primary">
-                        Styled tooltip
-                    </Button>
-                </StyledTooltip>
-                <Alert severity="error">
-                    <AlertTitle>Error</AlertTitle>
-                    This is an error alert — <strong>check it out!</strong>
-                </Alert>   
-            </TableCell>            
+                
+            </TableCell>
+            <TableCell><CustomerDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>          
         </TableRow>
       )  
   }
