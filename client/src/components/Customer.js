@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Button from '@mui/material/Button';
@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
 import CustomerDelete from './CustomerDelete';
+import ECharts, { EChartsReactProps } from 'echarts-for-react';
 
 const StyledTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -16,22 +17,47 @@ const StyledTooltip = styled(({ className, ...props }) => (
       background: green;
     }
   `;
+
 class Customer extends React.Component {
-  render() {
-      return (    
-        <TableRow>
-            <TableCell>{this.props.id}</TableCell>
-            <TableCell><img src={this.props.image} alt="profile" height="64" width="64"></img></TableCell>
-            <TableCell>{this.props.name}</TableCell>
-            <TableCell>{this.props.birthday}</TableCell>
-            <TableCell>{this.props.gender}</TableCell>
-            <TableCell>
-                {this.props.job}
-                
-            </TableCell>
-            <TableCell><CustomerDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>          
-        </TableRow>
-      )  
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            options :{
+                        xAxis: {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    },
+                        yAxis: {
+                            type: 'value'
+                    },
+                    series: [
+                        {
+                            data: [150, 230, 224, 218, 135, 147, 260],
+                            type: 'line'
+                        }
+                        ]
+                    }
+        };
+    }    
+    render() {
+        return (    
+            <TableRow>
+                <TableCell>{this.props.id}</TableCell>
+                <TableCell><img src={this.props.image} alt="profile" height="64" width="64"></img></TableCell>
+                <TableCell>{this.props.name}</TableCell>
+                <TableCell>{this.props.birthday}</TableCell>
+                <TableCell>{this.props.gender}</TableCell>
+                <TableCell>
+                    {this.props.job}
+                    <ECharts
+                    option={this.state.options}
+                    opts={{ renderer: 'svg', width: 'auto', height: '100%' }}
+                    />
+                </TableCell>
+                <TableCell><CustomerDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>          
+            </TableRow>
+        )  
   }
 }
 
